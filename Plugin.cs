@@ -324,7 +324,7 @@ public class Plugin : BaseUnityPlugin
 
     private void CreateStartGameOnHardestButtons()
     {
-        if(GUILayout.Button("Speed hack"))
+        if(GUILayout.Button("Sprint speed x100"))
         {
             if (playerDict.Count == 0)
             {

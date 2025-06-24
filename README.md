@@ -6,7 +6,7 @@ This multi-tool plugin is designed to speed up development, testing in Peak.
 
     🔁 Respawn yourself
 
-    💀 Kill other players
+    💀 Kill any player in lobby
 
     🧾 Set a custom name (via username.txt)
 

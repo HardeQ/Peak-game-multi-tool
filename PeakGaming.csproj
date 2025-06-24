@@ -33,6 +33,9 @@
     <Reference Include="com.rlabrecque.steamworks.net">
       <HintPath>libs\com.rlabrecque.steamworks.net.dll</HintPath>
     </Reference>
+    <Reference Include="Photon3Unity3D">
+      <HintPath>libs\Photon3Unity3D.dll</HintPath>
+    </Reference>
     <Reference Include="PhotonRealtime">
       <HintPath>libs\PhotonRealtime.dll</HintPath>
     </Reference>

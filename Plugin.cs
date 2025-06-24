@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Numerics;
@@ -12,6 +13,7 @@ using HarmonyLib;
 using HarmonyLib.Tools;
 using Photon.Pun;
 using Photon.Realtime;
+using Photon.Realtime.Demo;
 using Steamworks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -19,6 +21,8 @@ using Zorro.Core;
 using Zorro.UI.Modal;
 
 namespace PeakGaming;
+
+
 
 [HarmonyPatch(typeof(SteamLobbyHandler), "OnLobbyEnter")]
 public class OnLobbyEnter_Patch
@@ -144,13 +148,26 @@ public class Plugin : BaseUnityPlugin
     private SteamLobbyHandler steamLobbyHandler;
 
     // Your name in game
-    public static string yourName = "Forsen";
+    public static string yourName = "";
+    
+    private string filePath = "";
 
+    private string steamId= "";
 
 
     private void Awake()
     {
-        yourName = File.ReadAllText(Path.Combine(Paths.GameRootPath, "username.txt"));
+
+        filePath = Path.Combine(Paths.GameRootPath, "username.txt");
+        if (File.Exists(filePath))
+        {
+            yourName = File.ReadAllText(filePath);
+        }
+        else
+        {
+            string defaultContent = "New user";
+            File.WriteAllText(filePath, defaultContent);
+        }
         Logger = base.Logger;
         Logger.LogInfo($"Plugin {MyPluginInfo.PLUGIN_GUID} is loaded!");
 
@@ -303,6 +320,7 @@ public class Plugin : BaseUnityPlugin
         CreateAcquirePlayersButton();
         CreateStateOfGameButtons();
         CreateStartGameOnHardestButtons();
+        CreateJoinLobby();
     }
 
     void DrawPlayerTab()
@@ -320,6 +338,30 @@ public class Plugin : BaseUnityPlugin
     void DrawSelfTab()
     {
         CreateInfiniteStaminaButton();
+        CreateSetUsername();
+    }
+
+
+    private void CreateJoinLobby()
+    {
+        GUILayout.Label("Lobby ID");
+        steamId = GUILayout.TextField(steamId);
+        if (GUILayout.Button("Join Lobby"))
+        {
+            CSteamID lobbyId = new CSteamID(ulong.Parse(steamId));
+            steamLobbyHandler.TryJoinLobby(lobbyId);
+        }
+    }
+
+    private void CreateSetUsername()
+    {
+        GUILayout.Label("Username");
+        localPlayerName = GUILayout.TextField(localPlayerName);
+        if(GUILayout.Button("Save username"))
+        {
+            File.WriteAllText(filePath, localPlayerName);
+            PhotonNetwork.NetworkingClient.LocalPlayer.NickName = localPlayerName;
+        }
     }
 
     private void CreateStartGameOnHardestButtons()

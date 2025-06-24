@@ -3,7 +3,6 @@
 A powerful debugging and testing plugin for the game Peak, built for BepInEx.
 
 This multi-tool plugin is designed to speed up development, testing in Peak.
-🔧 Features
 
     🔁 Respawn yourself
 

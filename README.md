@@ -20,7 +20,7 @@ This multi-tool plugin is designed to speed up development, testing in Peak.
 
     ❌ Instantly lose the game
 
-    ⚠️ Some features (e.g. force-winning games) may not function correctly depending on the current game version.
+    ⚠️ Some features (e.g. force-winning games) may not function correctly as they are badly implemented.
 
 📝 Usage Notes
 

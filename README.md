@@ -24,8 +24,6 @@ This multi-tool plugin is designed to speed up development, testing in Peak.
 
 📝 Usage Notes
 
-    Custom Name: To set your name, create a username.txt file in the root of the game directory and write your desired name inside.
-
     BepInEx Required: This plugin must be used with the BepInEx framework.
 
 🛠️ Building the Plugin

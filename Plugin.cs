@@ -153,7 +153,7 @@ public class Plugin : BaseUnityPlugin
     private string filePath = "";
 
     private string steamId= "";
-
+    private bool isCursorOn = false;
 
     private void Awake()
     {
@@ -209,6 +209,20 @@ public class Plugin : BaseUnityPlugin
         {
             currentRect.x = targetRect.x;
             slidingIn = false;
+        }
+    }
+
+    private void LateUpdate()
+    {
+        if(Input.GetKeyDown(KeyCode.F2))
+        {
+            isCursorOn = !isCursorOn;
+        }
+
+        if (isCursorOn)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
     }
 
